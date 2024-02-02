@@ -131,7 +131,7 @@ class _FindLocationScreenState extends State<FindLocationScreen> with TickerProv
           Place? nearestPlace = await _findNearestPlaceWithTravelTime(value, nearbyPlaces);
           if (nearestPlace != null)
           {
-            final String apiKey = 'AIzaSyCIw8Itynii3FLAlsfqkLEJPz-p7ZOmHl8';
+            final String apiKey = 'API_KEY';
             int estimatedTime = await getEstimatedTravelTime(apiKey, nearestPlace);
             await flutterTts.speak("Jesteś w pobliżu ${nearestPlace.name}. Szacowany czas dotarcia ${estimatedTime ~/ 60} minut");
           }
@@ -150,7 +150,7 @@ class _FindLocationScreenState extends State<FindLocationScreen> with TickerProv
     int? minTravelTime;
     for (Place place in places)
     {
-      int travelTime = await getEstimatedTravelTime('AIzaSyCIw8Itynii3FLAlsfqkLEJPz-p7ZOmHl8', place);
+      int travelTime = await getEstimatedTravelTime('API_KEY', place);
       if (minTravelTime == null || travelTime < minTravelTime)
       {
         minTravelTime = travelTime;
@@ -174,7 +174,7 @@ class _FindLocationScreenState extends State<FindLocationScreen> with TickerProv
 
   Future<List<Place>> getNearbyPlaces(Position userLocation) async
   {
-    final String apiKey = 'AIzaSyCIw8Itynii3FLAlsfqkLEJPz-p7ZOmHl8';
+    final String apiKey = 'API_KEY';
     final String apiUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
     final double radius = 500;
     final Uri uri = Uri.parse('$apiUrl?location=${userLocation.latitude},${userLocation.longitude}&radius=$radius&key=$apiKey',);
