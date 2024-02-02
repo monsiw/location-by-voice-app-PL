@@ -14,10 +14,10 @@ object relative to the user's location and approximate time to reach it.
 - [Language Configuration](#language-configuration)
 - [APK Generation](#apk-generation)
 - [Installing the APK on an Android Device](#installing-the-apk-on-an-android-device)
-  - [Note]
+  - [Note](#note)
 - [Documentation](#documentation)
-    - [Developer Documentation]
-    - [API Documentation]
+    - [Developer Documentation](#developer-documentation)
+    - [API Documentation](#api-documentation)
 - [License](#license)
 
 ### Features
