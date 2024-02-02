@@ -10,14 +10,14 @@ object relative to the user's location and approximate time to reach it.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Language Configuration](#contributing)
+- [API_KEY Configuration](#api_key-configuration)
+- [Language Configuration](#language-configuration)
 - [APK Generation](#apk-generation)
 - [Installing the APK on an Android Device](#installing-the-apk-on-an-android-device)
   - [Note]
 - [Documentation](#documentation)
     - [Developer Documentation]
     - [API Documentation]
-    - [Source Code Documentation]
 - [License](#license)
 
 ### Features
@@ -53,7 +53,32 @@ object relative to the user's location and approximate time to reach it.
 - Launch the app on your mobile device
 - Press the microphone button to initiate voice commands
 - Use command "gdzie jestem"
-  
+
+### API_KEY Configuration
+**Android** <br>
+In your project folder, go to android/app/src/main/AndroidManifest.xml:
+  ```xml
+  <meta-data android:name="com.google.android.geo.API_KEY"
+       android:value="YOUR_API_KEY"/>
+  ```
+**iOS** <br>
+In your project folder, go to ios/Runner/Info.plist and enter the following code snippet:
+  ```xml
+  <key>API_KEY_NAME</key>
+  <string>YOUR_API_KEY</string>
+  ```
+In the void _onSpeechResult(result) function:
+  ```dart
+  final String apiKey = 'YOUR_API_KEY';
+  ```
+In the function Future<Place?> _findNearestPlaceWithTravelTime(Position userLocation, List<Place> places) async:
+  ```dart
+  int travelTime = await getEstimatedTravelTime('YOUR_API_KEY', place);
+  ```
+In the Future<List<Place>> getNearbyPlaces(Position userLocation) async function:
+  ```dart
+  final String apiKey = 'YOUR_API_KEY';
+  ```
 ### Language Configuration
 
 To switch the language of the voice commands and notifications from Polish (PL) to English (EN), follow these steps:
@@ -125,10 +150,6 @@ Make sure to replace `/path/to/your/project` with the actual path to your Flutte
 
 #### API Documentation
 - [Google Maps API](https://developers.google.com/maps/documentation)
-
-#### Source Code Documentation
-- [FindLocationScreen.dart:](lib/pages/find_location.dart) Contains the main screen logic
-- [main.dart:](lib/main.dart) Main entry point for the Flutter app
 
 ### License
 This project is licensed under the MIT License
